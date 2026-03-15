@@ -3,123 +3,163 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TechUsados — Celulares de calidad al mejor precio</title>
- <link rel="stylesheet" href="styles.css" />
+    <title>TechUsados — Celulares certificados en Maicao</title>
+    <meta name="description" content="Venta de celulares usados certificados en Maicao, La Guajira. iPhones y Android con garantía incluida." />
+    <link rel="stylesheet" href="styles.css" />
   </head>
 
   <body>
 
-    <!-- ========== ENCABEZADO ========== -->
+    <!-- ========== HEADER ========== -->
     <header>
-      <h1>TechUsados</h1>
-      <p>Celulares certificados · Garantía incluida · Envío a todo Colombia</p>
-      <nav>
+      <a href="index.html" class="logo">TechUsados</a>
+      <nav aria-label="Navegación principal">
         <ul>
-          <li><a href="#catalogo">Catálogo</a></li>
-          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#categorias">Categorías</a></li>
+          <li><a href="#garantias">Garantías</a></li>
           <li><a href="#contacto">Contacto</a></li>
         </ul>
       </nav>
     </header>
 
-    <!-- ========== HERO SECTION ========== -->
-<section id="hero" aria-labelledby="hero-titulo">
-  <div class="hero-contenido">
-    <p class="hero-eyebrow">📍 Maicao, La Guajira · Envíos a todo Colombia</p>
-    <h1 id="hero-titulo">El iPhone que querías,<br>al precio que necesitas.</h1>
-    <p class="hero-subtitulo">
-      Equipos verificados, con batería certificada y garantía incluida.
-      Sin sorpresas, sin letras pequeñas.
-    </p>
-    <a href="#catalogo" class="hero-cta">Ver Equipos Disponibles</a>
-  </div>
-</section>
-    
-    <!-- ========== CONTENIDO PRINCIPAL ========== -->
+
     <main>
 
-      <section id="catalogo" aria-labelledby="catalogo-titulo">
-        <h2 id="catalogo-titulo">Celulares disponibles</h2>
+      <!-- ========== HERO ========== -->
+      <section id="hero" aria-labelledby="hero-titulo">
+        <div class="hero-contenido">
 
-        <!-- Tarjeta 1 -->
-        <article>
-          <figure>
-            <Imagens
-              src="Imagens/iphone-13.jpg"
-              alt="iPhone 13 color negro, estado excelente"
-              width="300"
-              height="300"
-            />
-            <figcaption>iPhone 13 — Negro Medianoche</figcaption>
-          </figure>
+          <p class="hero-eyebrow">Maicao, La Guajira · Desde 2019</p>
 
-          <h3>Apple iPhone 13</h3>
+          <h1 id="hero-titulo">
+            Celulares usados.<br>
+            <em>Calidad que no negocia.</em>
+          </h1>
 
-          <dl>
-            <dt>Capacidad</dt>
-            <dd>128 GB</dd>
-
-            <dt>Salud de batería</dt>
-            <dd>91%</dd>
-
-            <dt>Estado del equipo</dt>
-            <dd>Excelente — sin rayones ni golpes</dd>
-          </dl>
-
-          <p>
-            <strong>Precio: $1.850.000 COP</strong>
+          <p class="hero-subtitulo">
+            Revisamos cada equipo antes de vendértelo: batería, cámara, 
+            micrófono, Face ID. Si no pasa nuestro checklist de 22 puntos, 
+            no sale a la venta.
           </p>
 
-          <a href="#contacto">Consultar disponibilidad</a>
-        </article>
+          <a href="#categorias" class="hero-cta">Explorar catálogo</a>
+        </div>
 
-        <!-- Tarjeta 2 -->
-        <article>
-          <figure>
-            <Imagens
-              src="Imagens/iphone-11.jpg"
-              alt="iPhone 11 color blanco, estado bueno"
-              width="300"
-              height="300"
-            />
-            <figcaption>iPhone 11 — Blanco</figcaption>
-          </figure>
+        <!-- Decoración geométrica de fondo (solo visual) -->
+        <div class="hero-deco" aria-hidden="true">
+          <span class="deco-circulo deco-circulo--1"></span>
+          <span class="deco-circulo deco-circulo--2"></span>
+        </div>
+      </section>
 
-          <h3>Apple iPhone 11</h3>
 
-          <dl>
-            <dt>Capacidad</dt>
-            <dd>64 GB</dd>
+      <!-- ========== TRUST STRIP ========== -->
+      <section id="garantias" aria-label="Nuestras garantías">
+        <ul class="trust-strip">
+          <li class="trust-item">
+            <span class="trust-icono" aria-hidden="true">✓</span>
+            <div>
+              <strong>Checklist de 22 puntos</strong>
+              <p>Revisión técnica completa antes de cada venta</p>
+            </div>
+          </li>
+          <li class="trust-item">
+            <span class="trust-icono" aria-hidden="true">⚡</span>
+            <div>
+              <strong>Batería certificada</strong>
+              <p>Informamos el porcentaje real de salud</p>
+            </div>
+          </li>
+          <li class="trust-item">
+            <span class="trust-icono" aria-hidden="true">🔒</span>
+            <div>
+              <strong>30 días de garantía</strong>
+              <p>Si falla, lo resolvemos sin costo adicional</p>
+            </div>
+          </li>
+          <li class="trust-item">
+            <span class="trust-icono" aria-hidden="true">📦</span>
+            <div>
+              <strong>Envíos a Colombia</strong>
+              <p>Despachamos por Servientrega y coordinadora</p>
+            </div>
+          </li>
+        </ul>
+      </section>
 
-            <dt>Salud de batería</dt>
-            <dd>84%</dd>
 
-            <dt>Estado del equipo</dt>
-            <dd>Bueno — rayón leve en marco lateral</dd>
-          </dl>
+      <!-- ========== CATEGORÍAS ========== -->
+      <section id="categorias" aria-labelledby="categorias-titulo">
+        <div class="categorias-header">
+          <h2 id="categorias-titulo">¿Qué equipo estás buscando?</h2>
+          <p>Selecciona una categoría para ver los equipos disponibles</p>
+        </div>
 
-          <p>
-            <strong>Precio: $1.100.000 COP</strong>
-          </p>
+        <div class="categorias-grid">
 
-          <a href="#contacto">Consultar disponibilidad</a>
-        </article>
+          <!-- Tarjeta Apple -->
+          <a href="iphones.html" class="cat-card cat-card--apple" aria-label="Ver catálogo de iPhones Apple">
+            <div class="cat-card__fondo" aria-hidden="true">
+              <!-- Silueta SVG del logo Apple —puramente decorativa— -->
+              <svg class="cat-card__logo-svg" viewBox="0 0 170 210" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M139 42c-10 12-26 21-42 20-2-16 6-33 16-44 11-13 28-22 43-22 1 17-5 33-17 46z" fill="currentColor" opacity="0.12"/>
+                <path d="M168 145c-4 8-6 12-11 20-7 11-17 25-29 25-11 0-14-7-29-7s-19 7-30 7c-12 0-21-13-29-24-20-29-35-82-15-118 10-18 28-30 47-30 13 0 22 8 33 8 11 0 18-9 33-9 17 0 34 9 46 26-40 22-33 79 4 102z" fill="currentColor" opacity="0.12"/>
+              </svg>
+            </div>
+            <div class="cat-card__contenido">
+              <p class="cat-card__marca">Apple</p>
+              <h3 class="cat-card__titulo">iPhones</h3>
+              <p class="cat-card__desc">iPhone 11 al 15 Pro Max · Face ID certificado · iOS original</p>
+              <span class="cat-card__cta">Ver iPhones <span aria-hidden="true">→</span></span>
+            </div>
+          </a>
 
+          <!-- Tarjeta Android -->
+          <a href="androids.html" class="cat-card cat-card--android" aria-label="Ver catálogo de Android y multimarca">
+            <div class="cat-card__fondo" aria-hidden="true">
+              <!-- Silueta del robot Android -->
+              <svg class="cat-card__logo-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <ellipse cx="100" cy="75" rx="58" ry="50" fill="currentColor" opacity="0.12"/>
+                <rect x="42" y="95" width="116" height="75" rx="14" fill="currentColor" opacity="0.12"/>
+                <rect x="18" y="95" width="22" height="55" rx="11" fill="currentColor" opacity="0.12"/>
+                <rect x="160" y="95" width="22" height="55" rx="11" fill="currentColor" opacity="0.12"/>
+                <rect x="70" y="155" width="22" height="38" rx="11" fill="currentColor" opacity="0.12"/>
+                <rect x="108" y="155" width="22" height="38" rx="11" fill="currentColor" opacity="0.12"/>
+                <circle cx="78" cy="72" r="7" fill="currentColor" opacity="0.25"/>
+                <circle cx="122" cy="72" r="7" fill="currentColor" opacity="0.25"/>
+                <line x1="72" y1="38" x2="58" y2="20" stroke="currentColor" stroke-width="5" stroke-linecap="round" opacity="0.2"/>
+                <line x1="128" y1="38" x2="142" y2="20" stroke="currentColor" stroke-width="5" stroke-linecap="round" opacity="0.2"/>
+              </svg>
+            </div>
+            <div class="cat-card__contenido">
+              <p class="cat-card__marca">Android</p>
+              <h3 class="cat-card__titulo">Multimarca</h3>
+              <p class="cat-card__desc">Samsung · Xiaomi · Motorola · Huawei · y más marcas</p>
+              <span class="cat-card__cta">Ver Androids <span aria-hidden="true">→</span></span>
+            </div>
+          </a>
+
+        </div>
       </section>
 
     </main>
 
-    <!-- ========== PIE DE PÁGINA ========== -->
-    <footer id="contacto">
-      <p>
-        &copy; 2026 TechUsados · Maicao, La Guajira · 
-        <a href="tel:+573233281133">3233281133</a>
-      </p>
-      <address>
-        <a href="mailto:ventas@techusados.co">ventas@techusados.co</a>
-      </address>
-    </footer>
- <script src="script.js"></script>
 
+    <!-- ========== FOOTER ========== -->
+    <footer id="contacto">
+      <div class="footer-contenido">
+        <div class="footer-marca">
+          <strong>TechUsados</strong>
+          <p>Maicao, La Guajira, Colombia</p>
+        </div>
+        <address class="footer-contacto">
+          <a href="tel:+573001234567">300 123 4567</a>
+          <a href="mailto:ventas@techusados.co">ventas@techusados.co</a>
+        </address>
+      </div>
+      <p class="footer-copy">&copy; 2026 TechUsados. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
   </body>
 </html>
