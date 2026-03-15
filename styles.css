@@ -534,3 +534,10 @@ footer {
   font-size: 0.78rem;
   color: rgba(255,255,255,0.4);
 }
+
+/* ===== FIX: liberar main del max-width heredado ===== */
+main {
+  max-width: none;
+  padding: 0;
+  margin: 0;
+}
