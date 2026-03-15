@@ -1,0 +1,356 @@
+/* ============================================================
+   styles.css — TechUsados
+   Estilo: Minimalismo refinado, inspirado en Apple.com
+   Metodología: Mobile-First + CSS Custom Properties
+   ============================================================ */
+
+
+/* ----------------------------------------------------------
+   1. TOKENS DE DISEÑO (variables globales)
+      Centraliza colores, tipografía y espaciado en un solo lugar.
+      Si quieres cambiar el color de acento, solo tocas UNA línea.
+   ---------------------------------------------------------- */
+:root {
+  /* Paleta */
+  --color-bg:          #f5f5f7;   /* gris hielo, fondo global de Apple */
+  --color-surface:     #ffffff;   /* fondo de tarjetas */
+  --color-border:      #d2d2d7;   /* borde sutil */
+  --color-text-primary:   #1d1d1f; /* casi negro Apple */
+  --color-text-secondary: #6e6e73; /* gris medio Apple */
+  --color-accent:      #0071e3;   /* azul Apple */
+  --color-accent-hover:#0077ed;
+  --color-price:       #1d1d1f;
+
+  /* Tipografía: el mismo stack que usa Apple.com */
+  --font-sans: "SF Pro Display", "SF Pro Text", -apple-system,
+               BlinkMacSystemFont, "Helvetica Neue", Helvetica,
+               Arial, sans-serif;
+
+  /* Espaciado con escala 8px */
+  --space-xs:  8px;
+  --space-sm:  16px;
+  --space-md:  24px;
+  --space-lg:  48px;
+  --space-xl:  80px;
+
+  /* Sombras */
+  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.08),
+                 0 1px  3px rgba(0, 0, 0, 0.06);
+  --shadow-card-hover: 0 8px 32px rgba(0, 0, 0, 0.12),
+                       0 2px  8px rgba(0, 0, 0, 0.08);
+
+  /* Bordes */
+  --radius-card: 18px;
+  --radius-btn:  980px; /* píldora */
+  --radius-img:  12px;
+
+  /* Transiciones */
+  --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+/* ----------------------------------------------------------
+   2. RESET MODERNO
+      Elimina inconsistencias entre navegadores sin over-resetting.
+   ---------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 17px;              /* tamaño base de Apple */
+  line-height: 1.6;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+
+/* ----------------------------------------------------------
+   3. HEADER
+   ---------------------------------------------------------- */
+header {
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: saturate(180%) blur(20px);   /* efecto cristal Apple */
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-sm) var(--space-md);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  /* Layout interno: logo a la izquierda, nav a la derecha */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  text-align: center;
+}
+
+header h1 {
+  font-size: clamp(1.5rem, 4vw, 2rem);  /* fluido: escala con el viewport */
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--color-text-primary);
+}
+
+header > p {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.01em;
+}
+
+/* Navegación */
+header nav ul {
+  display: flex;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+header nav a {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  padding: 4px 0;
+  border-bottom: 2px solid transparent;
+  transition: border-color var(--transition-smooth),
+              color var(--transition-smooth);
+}
+
+header nav a:hover {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+
+/* En pantallas medianas: todo en una fila */
+@media (min-width: 768px) {
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+    padding: var(--space-sm) var(--space-lg);
+  }
+
+  header > p {
+    display: none; /* el slogan ocupa espacio innecesario en desktop */
+  }
+}
+
+
+/* ----------------------------------------------------------
+   4. MAIN & SECTION — contenedor principal
+   ---------------------------------------------------------- */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-lg) var(--space-md);
+}
+
+#catalogo h2 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  margin-bottom: var(--space-xs);
+  color: var(--color-text-primary);
+}
+
+#catalogo > p {            /* subtítulo opcional debajo del h2 */
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-lg);
+  font-size: 1.1rem;
+}
+
+/* ----------------------------------------------------------
+   5. GRID DE TARJETAS — RESPONSIVE
+      Mobile: 1 columna (default)
+      Tablet ≥ 600px: 2 columnas
+      Desktop ≥ 1024px: 3 columnas (listo para más productos)
+   ---------------------------------------------------------- */
+section#catalogo {
+  display: grid;
+  grid-template-columns: 1fr;             /* móvil: 1 columna */
+  gap: var(--space-md);
+}
+
+/* El h2 ocupa todo el ancho, no entra en las columnas de tarjetas */
+section#catalogo > h2 {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 600px) {
+  section#catalogo {
+    grid-template-columns: repeat(2, 1fr);  /* tablet: 2 columnas */
+  }
+}
+
+@media (min-width: 1024px) {
+  section#catalogo {
+    grid-template-columns: repeat(3, 1fr);  /* desktop: 3 columnas */
+  }
+}
+
+
+/* ----------------------------------------------------------
+   6. TARJETA (article)
+   ---------------------------------------------------------- */
+article {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+
+  /* Flexbox vertical para que el botón siempre quede abajo */
+  display: flex;
+  flex-direction: column;
+
+  transition: transform var(--transition-smooth),
+              box-shadow var(--transition-smooth);
+}
+
+article:hover {
+  transform: translateY(-4px);            /* elevación sutil al pasar el cursor */
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* Imagen del producto */
+article figure {
+  background-color: #f9f9f9;
+  padding: var(--space-md);
+  text-align: center;
+}
+
+article figure img {
+  width: 100%;
+  max-height: 220px;
+  object-fit: contain;                    /* no recorta la imagen */
+  border-radius: var(--radius-img);
+  margin: 0 auto;
+  transition: transform var(--transition-smooth);
+}
+
+article:hover figure img {
+  transform: scale(1.03);                 /* zoom muy suave en hover */
+}
+
+article figcaption {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  margin-top: var(--space-xs);
+}
+
+/* Cuerpo de la tarjeta */
+article h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  padding: var(--space-sm) var(--space-sm) 0;
+}
+
+/* Lista de especificaciones (dl, dt, dd) */
+article dl {
+  padding: var(--space-xs) var(--space-sm);
+  display: grid;
+  grid-template-columns: auto 1fr;        /* dt a la izquierda, dd a la derecha */
+  gap: 6px var(--space-sm);
+  align-items: baseline;
+  flex-grow: 1;                           /* empuja el precio y el botón hacia abajo */
+}
+
+article dt {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+article dd {
+  font-size: 0.9rem;
+  color: var(--color-text-primary);
+}
+
+/* Precio */
+article p {
+  padding: var(--space-xs) var(--space-sm);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-price);
+}
+
+/* CTA (botón "Consultar disponibilidad") */
+article a {
+  display: block;
+  margin: var(--space-xs) var(--space-sm) var(--space-sm);
+  padding: 12px var(--space-md);
+  background-color: var(--color-accent);
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  border-radius: var(--radius-btn);
+  transition: background-color var(--transition-smooth),
+              transform var(--transition-smooth);
+}
+
+article a:hover {
+  background-color: var(--color-accent-hover);
+  transform: scale(1.02);
+}
+
+article a:active {
+  transform: scale(0.98);
+}
+
+
+/* ----------------------------------------------------------
+   7. FOOTER
+   ---------------------------------------------------------- */
+footer {
+  border-top: 1px solid var(--color-border);
+  padding: var(--space-lg) var(--space-md);
+  text-align: center;
+  color: var(--color-text-secondary);
+  font-size: 0.85rem;
+  line-height: 2;
+}
+
+footer a {
+  color: var(--color-accent);
+  transition: opacity var(--transition-smooth);
+}
+
+footer a:hover {
+  opacity: 0.75;
+}
+
+footer address {
+  font-style: normal;
+}
