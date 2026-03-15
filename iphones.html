@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catálogo Apple — TechUsados</title>
+    <meta name="description" content="iPhones usados certificados en Maicao. iPhone 11, 12, 13, 14 y 15 con batería verificada y 30 días de garantía." />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+
+    <!-- ========== HEADER (idéntico al index + botón volver) ========== -->
+    <header>
+      <a href="index.html" class="logo">TechUsados</a>
+      <nav aria-label="Navegación principal">
+        <ul>
+          <li>
+            <a href="index.html" class="nav-volver">
+              <span aria-hidden="true">←</span> Volver al Inicio
+            </a>
+          </li>
+          <li><a href="index.html#garantias">Garantías</a></li>
+          <li><a href="index.html#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </header>
+
+
+    <main class="catalogo-main">
+
+      <!-- ========== ENCABEZADO DEL CATÁLOGO ========== -->
+      <section class="catalogo-hero" aria-labelledby="catalogo-titulo">
+        <div class="catalogo-hero__contenido">
+          <p class="hero-eyebrow">Apple · iPhones certificados</p>
+          <h1 id="catalogo-titulo">Catálogo Apple</h1>
+          <p class="catalogo-hero__sub">
+            Todos los equipos pasan revisión de 22 puntos antes de publicarse.
+            Batería verificada · Face ID probado · IMEI limpio.
+          </p>
+        </div>
+      </section>
+
+
+      <!-- ========== GRID DE PRODUCTOS ========== -->
+      <section
+        id="productos"
+        class="productos-seccion"
+        aria-labelledby="productos-titulo"
+      >
+        <h2 id="productos-titulo" class="sr-only">Equipos disponibles</h2>
+
+        <div class="productos-grid">
+
+          <!-- ── TARJETA 1: iPhone 13 ── -->
+          <article class="producto-card">
+            <figure class="producto-card__figura">
+              <img
+                src="img/iphone-13.jpg"
+                alt="iPhone 13 color negro medianoche, estado excelente"
+                width="300"
+                height="300"
+                loading="lazy"
+              />
+              <figcaption>iPhone 13 · Negro Medianoche</figcaption>
+            </figure>
+
+            <div class="producto-card__cuerpo">
+
+              <header class="producto-card__header">
+                <span class="producto-card__marca">Apple</span>
+                <h3 class="producto-card__modelo">iPhone 13</h3>
+              </header>
+
+              <dl class="producto-card__specs">
+                <dt>Capacidad</dt>
+                <dd>128 GB</dd>
+
+                <dt>Salud de batería</dt>
+                <dd class="spec-bateria spec-bateria--buena">91%</dd>
+
+                <dt>Estado</dt>
+                <dd>Excelente — sin rayones ni golpes</dd>
+
+                <dt>Red</dt>
+                <dd>Desbloqueado para todas las operadoras</dd>
+              </dl>
+
+              <footer class="producto-card__footer">
+                <p class="producto-card__precio">
+                  <span class="precio-monto">$1.850.000</span>
+                  <span class="precio-moneda">COP</span>
+                </p>
+                <a href="#" class="btn-consultar">
+                  Consultar disponibilidad
+                </a>
+              </footer>
+
+            </div>
+          </article>
+
+
+          <!-- ── TARJETA 2: iPhone 11 ── -->
+          <article class="producto-card">
+            <figure class="producto-card__figura">
+              <img
+                src="img/iphone-11.jpg"
+                alt="iPhone 11 color blanco, estado bueno con rayón leve"
+                width="300"
+                height="300"
+                loading="lazy"
+              />
+              <figcaption>iPhone 11 · Blanco</figcaption>
+            </figure>
+
+            <div class="producto-card__cuerpo">
+
+              <header class="producto-card__header">
+                <span class="producto-card__marca">Apple</span>
+                <h3 class="producto-card__modelo">iPhone 11</h3>
+              </header>
+
+              <dl class="producto-card__specs">
+                <dt>Capacidad</dt>
+                <dd>64 GB</dd>
+
+                <dt>Salud de batería</dt>
+                <dd class="spec-bateria spec-bateria--regular">84%</dd>
+
+                <dt>Estado</dt>
+                <dd>Bueno — rayón leve en marco lateral</dd>
+
+                <dt>Red</dt>
+                <dd>Desbloqueado para todas las operadoras</dd>
+              </dl>
+
+              <footer class="producto-card__footer">
+                <p class="producto-card__precio">
+                  <span class="precio-monto">$1.100.000</span>
+                  <span class="precio-moneda">COP</span>
+                </p>
+                <a href="#" class="btn-consultar">
+                  Consultar disponibilidad
+                </a>
+              </footer>
+
+            </div>
+          </article>
+
+
+          <!-- ── TARJETA PLACEHOLDER: más equipos próximamente ── -->
+          <article class="producto-card producto-card--proximamente" aria-label="Más equipos próximamente">
+            <div class="proximamente-contenido">
+              <span class="proximamente-icono" aria-hidden="true">+</span>
+              <p>Más equipos</p>
+              <p class="proximamente-sub">Actualización frecuente de inventario</p>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+    </main>
+
+
+    <!-- ========== FOOTER (idéntico al index) ========== -->
+    <footer id="contacto">
+      <div class="footer-contenido">
+        <div class="footer-marca">
+          <strong>TechUsados</strong>
+          <p>Maicao, La Guajira, Colombia</p>
+        </div>
+        <address class="footer-contacto">
+          <a href="tel:+573001234567">300 123 4567</a>
+          <a href="mailto:ventas@techusados.co">ventas@techusados.co</a>
+        </address>
+      </div>
+      <p class="footer-copy">&copy; 2026 TechUsados. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
