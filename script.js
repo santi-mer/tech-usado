@@ -1,42 +1,105 @@
 // ============================================================
 //  script.js — TechUsados
-//  Interactividad de los botones "Consultar disponibilidad"
+//  Maneja: botones de consulta (iPhones) + compra (Android)
+//          + filtro de marcas (Android)
 // ============================================================
 
-
-// Esperamos a que el HTML esté completamente cargado antes
-// de buscar cualquier elemento en el DOM.
 document.addEventListener('DOMContentLoaded', function () {
 
-  // 1. Seleccionamos TODOS los botones/links dentro de las tarjetas.
-  //    querySelectorAll devuelve una NodeList con todos los <a>
-  //    que sean hijos directos de un <article>.
-  const botonesConsulta = document.querySelectorAll('article a');
+  // ----------------------------------------------------------
+  // 1. BOTONES "CONSULTAR DISPONIBILIDAD" — página iPhones
+  //    Selecciona todos los <a class="btn-consultar"> dentro de
+  //    un <article> y muestra la alerta de WhatsApp.
+  // ----------------------------------------------------------
+  const botonesConsulta = document.querySelectorAll('article a.btn-consultar');
 
-  // 2. Recorremos cada botón y le asignamos un listener de clic.
   botonesConsulta.forEach(function (boton) {
-
-    boton.addEventListener('click', function (evento) {
-
-      // 3. Prevenimos la navegación del enlace (<a href="#contacto">)
-      //    para que la página no haga scroll antes del alert.
-      evento.preventDefault();
-
-      // 4. Mostramos la alerta solicitada.
+    boton.addEventListener('click', function (e) {
+      e.preventDefault();
       alert('Redirigiendo a WhatsApp para consultar sobre este equipo...');
 
-      // ------------------------------------------------------------
-      // 💡 BONUS — Redireccion real a WhatsApp (opcional por ahora)
-      //    Cuando tengas un número real, descomenta estas líneas,
-      //    reemplaza TUNUMERO por el número con código de país
-      //    (ej: 573001234567) y borra el alert() de arriba.
-      // ------------------------------------------------------------
-      // const numero  = '3233281133';
+      // ── Descomenta cuando tengas número real ──
+      // const numero  = '573001234567';
       // const modelo  = boton.closest('article').querySelector('h3').textContent;
       // const mensaje = encodeURIComponent(`Hola! Me interesa el ${modelo}. ¿Está disponible?`);
       // window.open(`https://wa.me/${numero}?text=${mensaje}`, '_blank');
-
     });
   });
 
-});
+
+  // ----------------------------------------------------------
+  // 2. BOTONES "CONSULTAR / COMPRAR" — página Android
+  //    Usa data-modelo y data-precio para personalizar el
+  //    mensaje de la alerta con el equipo específico.
+  // ----------------------------------------------------------
+  const botonesComprar = document.querySelectorAll('button.btn-comprar');
+
+  botonesComprar.forEach(function (boton) {
+    boton.addEventListener('click', function () {
+      const modelo = boton.dataset.modelo;
+      const precio = boton.dataset.precio;
+
+      // Alerta personalizada con el modelo y precio del equipo
+      alert(
+        `¡Excelente elección!\n\n` +
+        `Equipo: ${modelo}\n` +
+        `Precio: ${precio} COP\n\n` +
+        `Redirigiendo a WhatsApp para confirmar disponibilidad...`
+      );
+
+      // ── Descomenta cuando tengas número real ──
+      // const numero  = '573001234567';
+      // const mensaje = encodeURIComponent(
+      //   `Hola! Quiero el ${modelo} a ${precio}. ¿Está disponible?`
+      // );
+      // window.open(`https://wa.me/${numero}?text=${mensaje}`, '_blank');
+    });
+  });
+
+
+  // ----------------------------------------------------------
+  // 3. FILTRO DE MARCAS — solo activo en androids.html
+  //    Muestra/oculta tarjetas según el atributo data-marca.
+  // ----------------------------------------------------------
+  const filtros = document.querySelectorAll('.filtro-btn');
+
+  if (filtros.length > 0) {
+
+    filtros.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+
+        // Actualiza el estado visual del botón activo
+        filtros.forEach(function (b) { b.classList.remove('filtro-btn--activo'); });
+        btn.classList.add('filtro-btn--activo');
+
+        const marcaSeleccionada = btn.dataset.marca;
+        const tarjetas = document.querySelectorAll('.producto-card[data-marca]');
+
+        tarjetas.forEach(function (tarjeta) {
+          if (marcaSeleccionada === 'todos' || tarjeta.dataset.marca === marcaSeleccionada) {
+            // Mostrar con animación suave
+            tarjeta.style.display = 'flex';
+            // Pequeño delay para que el reflow ocurra antes de la animación
+            requestAnimationFrame(function () {
+              tarjeta.style.opacity  = '1';
+              tarjeta.style.transform = 'translateY(0) scale(1)';
+            });
+          } else {
+            // Ocultar
+            tarjeta.style.opacity   = '0';
+            tarjeta.style.transform = 'translateY(8px) scale(0.97)';
+            // Espera que termine la transición CSS antes de hacer display:none
+            setTimeout(function () {
+              if (tarjeta.style.opacity === '0') {
+                tarjeta.style.display = 'none';
+              }
+            }, 280);
+          }
+        });
+
+      });
+    });
+
+  } // fin if filtros
+
+}); // fin DOMContentLoaded
