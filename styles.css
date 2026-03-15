@@ -354,3 +354,108 @@ footer a:hover {
 footer address {
   font-style: normal;
 }
+
+/* ============================================================
+   HERO SECTION
+   ============================================================ */
+
+/* scroll-behavior: smooth ya está en tu html{} pero lo dejamos
+   aquí como recordatorio — ya lo tienes cubierto */
+html {
+  scroll-behavior: smooth;
+}
+
+#hero {
+  /* Degradado sutil: va de blanco roto a un azul glacial muy tenue */
+  background: linear-gradient(
+    160deg,
+    #ffffff 0%,
+    #eef4fb 50%,
+    #e3edf8 100%
+  );
+  padding: var(--space-xl) var(--space-md);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 75vh;             /* ocupa 75% de la pantalla */
+  text-align: center;
+}
+
+.hero-contenido {
+  max-width: 720px;             /* limita el ancho del texto para legibilidad */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+
+  /* Animación de entrada suave al cargar la página */
+  animation: heroEntrada 0.8s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes heroEntrada {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Línea pequeña sobre el título (eyebrow text) */
+.hero-eyebrow {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+/* Título principal */
+#hero h1 {
+  font-size: clamp(2.2rem, 6vw, 3.8rem); /* fluido entre móvil y desktop */
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  color: var(--color-text-primary);
+}
+
+/* Párrafo de confianza */
+.hero-subtitulo {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--color-text-secondary);
+  max-width: 520px;
+  line-height: 1.6;
+}
+
+/* ---- BOTÓN CTA ---- */
+.hero-cta {
+  display: inline-block;
+  margin-top: var(--space-sm);
+  padding: 16px 36px;
+
+  /* Color sólido en lugar de azul estándar para que resalte más */
+  background-color: var(--color-text-primary); /* negro Apple */
+  color: #ffffff;
+
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  border-radius: var(--radius-btn); /* píldora — definido en tus variables */
+
+  transition: background-color var(--transition-smooth),
+              transform       var(--transition-smooth),
+              box-shadow      var(--transition-smooth);
+}
+
+.hero-cta:hover {
+  background-color: #3a3a3c;           /* gris oscuro Apple en hover */
+  transform: scale(1.04);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+.hero-cta:active {
+  transform: scale(0.97);
+  box-shadow: none;
+}
