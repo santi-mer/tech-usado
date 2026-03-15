@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catálogo Android — TechUsados</title>
+    <meta name="description" content="Android usados certificados en Maicao. Samsung, Xiaomi, Motorola con garantía incluida." />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body class="tema-android">
+
+    <!-- ========== HEADER ========== -->
+    <header class="header-android">
+      <a href="index.html" class="logo logo-android">TechUsados</a>
+      <nav aria-label="Navegación principal">
+        <ul>
+          <li>
+            <a href="index.html" class="nav-volver nav-volver--android">
+              <span aria-hidden="true">←</span> Volver al Inicio
+            </a>
+          </li>
+          <li><a href="index.html#garantias">Garantías</a></li>
+          <li><a href="index.html#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </header>
+
+
+    <main class="catalogo-main">
+
+      <!-- ========== HERO ANDROID ========== -->
+      <section class="catalogo-hero catalogo-hero--android" aria-labelledby="catalogo-titulo">
+        <div class="catalogo-hero__contenido">
+          <p class="hero-eyebrow hero-eyebrow--android">Android · Multimarca certificados</p>
+          <h1 id="catalogo-titulo">Catálogo Android</h1>
+          <p class="catalogo-hero__sub">
+            Samsung, Xiaomi, Motorola y más. Todos con batería verificada,
+            IMEI limpio y 30 días de garantía incluida.
+          </p>
+
+          <!-- Filtro de marcas -->
+          <div class="filtros" role="group" aria-label="Filtrar por marca">
+            <button class="filtro-btn filtro-btn--activo" data-marca="todos">Todos</button>
+            <button class="filtro-btn" data-marca="samsung">Samsung</button>
+            <button class="filtro-btn" data-marca="xiaomi">Xiaomi</button>
+            <button class="filtro-btn" data-marca="motorola">Motorola</button>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ========== GRID DE PRODUCTOS ========== -->
+      <section id="productos" class="productos-seccion" aria-labelledby="productos-titulo">
+        <h2 id="productos-titulo" class="sr-only">Equipos Android disponibles</h2>
+
+        <div class="productos-grid" id="grid-android">
+
+          <!-- ── Samsung Galaxy S24 Ultra ── -->
+          <article class="producto-card producto-card--android" data-marca="samsung">
+            <figure class="producto-card__figura producto-card__figura--android">
+              <div class="img-placeholder img-placeholder--android" aria-hidden="true">
+                <span class="img-placeholder__icono">📱</span>
+              </div>
+              <figcaption>Samsung Galaxy S24 Ultra · Titanio Negro</figcaption>
+            </figure>
+
+            <div class="producto-card__cuerpo">
+              <header class="producto-card__header">
+                <span class="producto-card__marca">Samsung</span>
+                <h3 class="producto-card__modelo">Galaxy S24 Ultra</h3>
+                <span class="badge-gama badge-gama--alta">Gama Alta</span>
+              </header>
+
+              <dl class="producto-card__specs">
+                <dt>Almacenamiento</dt>
+                <dd>256 GB</dd>
+                <dt>RAM</dt>
+                <dd>12 GB</dd>
+                <dt>Batería</dt>
+                <dd class="spec-bateria spec-bateria--buena">5000 mAh · 88%</dd>
+                <dt>Estado</dt>
+                <dd>Excelente</dd>
+              </dl>
+
+              <footer class="producto-card__footer">
+                <p class="producto-card__precio">
+                  <span class="precio-monto">$3.200.000</span>
+                  <span class="precio-moneda">COP</span>
+                </p>
+                <button
+                  class="btn-comprar"
+                  data-modelo="Samsung Galaxy S24 Ultra"
+                  data-precio="$3.200.000"
+                >
+                  Consultar / Comprar
+                </button>
+              </footer>
+            </div>
+          </article>
+
+
+          <!-- ── Samsung Galaxy A24 ── -->
+          <article class="producto-card producto-card--android" data-marca="samsung">
+            <figure class="producto-card__figura producto-card__figura--android">
+              <div class="img-placeholder img-placeholder--android" aria-hidden="true">
+                <span class="img-placeholder__icono">📱</span>
+              </div>
+              <figcaption>Samsung Galaxy A24 · Negro</figcaption>
+            </figure>
+
+            <div class="producto-card__cuerpo">
+              <header class="producto-card__header">
+                <span class="producto-card__marca">Samsung</span>
+                <h3 class="producto-card__modelo">Galaxy A24</h3>
+                <span class="badge-gama badge-gama--media">Gama Media</span>
+              </header>
+
+              <dl class="producto-card__specs">
+                <dt>Almacenamiento</dt>
+                <dd>128 GB</dd>
+                <dt>RAM</dt>
+                <dd>6 GB</dd>
+                <dt>Batería</dt>
+                <dd class="spec-bateria spec-bateria--buena">5000 mAh · 92%</dd>
+                <dt>Estado</dt>
+                <dd>Excelente — como nuevo</dd>
+              </dl>
+
+              <footer class="producto-card__footer">
+                <p class="producto-card__precio">
+                  <span class="precio-monto">$780.000</span>
+                  <span class="precio-moneda">COP</span>
+                </p>
+                <button
+                  class="btn-comprar"
+                  data-modelo="Samsung Galaxy A24"
+                  data-precio="$780.000"
+                >
+                  Consultar / Comprar
+                </button>
+              </footer>
+            </div>
+          </article>
+
+
+          <!-- ── Xiaomi Redmi Note 12 ── -->
+          <article class="producto-card producto-card--android" data-marca="xiaomi">
+            <figure class="producto-card__figura producto-card__figura--android">
+              <div class="img-placeholder img-placeholder--android" aria-hidden="true">
+                <span class="img-placeholder__icono">📱</span>
+              </div>
+              <figcaption>Xiaomi Redmi Note 12 · Azul</figcaption>
+            </figure>
+
+            <div class="producto-card__cuerpo">
+              <header class="producto-card__header">
+                <span class="producto-card__marca">Xiaomi</span>
+                <h3 class="producto-card__modelo">Redmi Note 12</h3>
+                <span class="badge-gama badge-gama--media">Gama Media</span>
+              </header>
+
+              <dl class="producto-card__specs">
+                <dt>Almacenamiento</dt>
+                <dd>128 GB</dd>
+                <dt>RAM</dt>
+                <dd>4 GB</dd>
+                <dt>Batería</dt>
+                <dd class="spec-bateria spec-bateria--regular">5000 mAh · 81%</dd>
+                <dt>Estado</dt>
+                <dd>Bueno — rayón leve en tapa</dd>
+              </dl>
+
+              <footer class="producto-card__footer">
+                <p class="producto-card__precio">
+                  <span class="precio-monto">$620.000</span>
+                  <span class="precio-moneda">COP</span>
+                </p>
+                <button
+                  class="btn-comprar"
+                  data-modelo="Xiaomi Redmi Note 12"
+                  data-precio="$620.000"
+                >
+                  Consultar / Comprar
+                </button>
+              </footer>
+            </div>
+          </article>
+
+
+          <!-- ── Motorola Moto G84 ── -->
+          <article class="producto-card producto-card--android" data-marca="motorola">
+            <figure class="producto-card__figura producto-card__figura--android">
+              <div class="img-placeholder img-placeholder--android" aria-hidden="true">
+                <span class="img-placeholder__icono">📱</span>
+              </div>
+              <figcaption>Motorola Moto G84 · Marshmallow Blue</figcaption>
+            </figure>
+
+            <div class="producto-card__cuerpo">
+              <header class="producto-card__header">
+                <span class="producto-card__marca">Motorola</span>
+                <h3 class="producto-card__modelo">Moto G84</h3>
+                <span class="badge-gama badge-gama--media">Gama Media</span>
+              </header>
+
+              <dl class="producto-card__specs">
+                <dt>Almacenamiento</dt>
+                <dd>256 GB</dd>
+                <dt>RAM</dt>
+                <dd>12 GB</dd>
+                <dt>Batería</dt>
+                <dd class="spec-bateria spec-bateria--buena">5000 mAh · 89%</dd>
+                <dt>Estado</dt>
+                <dd>Excelente</dd>
+              </dl>
+
+              <footer class="producto-card__footer">
+                <p class="producto-card__precio">
+                  <span class="precio-monto">$850.000</span>
+                  <span class="precio-moneda">COP</span>
+                </p>
+                <button
+                  class="btn-comprar"
+                  data-modelo="Motorola Moto G84"
+                  data-precio="$850.000"
+                >
+                  Consultar / Comprar
+                </button>
+              </footer>
+            </div>
+          </article>
+
+
+          <!-- ── Samsung Galaxy S23 FE ── -->
+          <article class="producto-card producto-card--android" data-marca="samsung">
+            <figure class="producto-card__figura producto-card__figura--android">
+              <div class="img-placeholder img-placeholder--android" aria-hidden="true">
+                <span class="img-placeholder__icono">📱</span>
+              </div>
+              <figcaption>Samsung Galaxy S23 FE · Grafito</figcaption>
+            </figure>
+
+            <div class="producto-card__cuerpo">
+              <header class="producto-card__header">
+                <span class="producto-card__marca">Samsung</span>
+                <h3 class="producto-card__modelo">Galaxy S23 FE</h3>
+                <span class="badge-gama badge-gama--alta">Gama Alta</span>
+              </header>
+
+              <dl class="producto-card__specs">
+                <dt>Almacenamiento</dt>
+                <dd>128 GB</dd>
+                <dt>RAM</dt>
+                <dd>8 GB</dd>
+                <dt>Batería</dt>
+                <dd class="spec-bateria spec-bateria--buena">4500 mAh · 87%</dd>
+                <dt>Estado</dt>
+                <dd>Excelente</dd>
+              </dl>
+
+              <footer class="producto-card__footer">
+                <p class="producto-card__precio">
+                  <span class="precio-monto">$1.450.000</span>
+                  <span class="precio-moneda">COP</span>
+                </p>
+                <button
+                  class="btn-comprar"
+                  data-modelo="Samsung Galaxy S23 FE"
+                  data-precio="$1.450.000"
+                >
+                  Consultar / Comprar
+                </button>
+              </footer>
+            </div>
+          </article>
+
+
+          <!-- ── Placeholder próximamente ── -->
+          <article class="producto-card producto-card--proximamente" aria-label="Más equipos próximamente">
+            <div class="proximamente-contenido">
+              <span class="proximamente-icono" aria-hidden="true">+</span>
+              <p>Más equipos</p>
+              <p class="proximamente-sub">Inventario actualizado frecuentemente</p>
+            </div>
+          </article>
+
+        </div><!-- /productos-grid -->
+      </section>
+
+    </main>
+
+
+    <!-- ========== FOOTER ========== -->
+    <footer id="contacto">
+      <div class="footer-contenido">
+        <div class="footer-marca">
+          <strong>TechUsados</strong>
+          <p>Maicao, La Guajira, Colombia</p>
+        </div>
+        <address class="footer-contacto">
+          <a href="tel:+573001234567">300 123 4567</a>
+          <a href="mailto:ventas@techusados.co">ventas@techusados.co</a>
+        </address>
+      </div>
+      <p class="footer-copy">&copy; 2026 TechUsados. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
