@@ -1,65 +1,56 @@
 /* ============================================================
    styles.css — TechUsados
-   Estilo: Minimalismo refinado, inspirado en Apple.com
-   Metodología: Mobile-First + CSS Custom Properties
+   Arquitectura: Landing page + subpáginas de categoría
+   Estética: Editorial de lujo · Blanco y negro · Sans-serif
    ============================================================ */
 
 
 /* ----------------------------------------------------------
-   1. TOKENS DE DISEÑO (variables globales)
-      Centraliza colores, tipografía y espaciado en un solo lugar.
-      Si quieres cambiar el color de acento, solo tocas UNA línea.
+   1. TOKENS DE DISEÑO
    ---------------------------------------------------------- */
 :root {
-  /* Paleta */
-  --color-bg:          #f5f5f7;   /* gris hielo, fondo global de Apple */
-  --color-surface:     #ffffff;   /* fondo de tarjetas */
-  --color-border:      #d2d2d7;   /* borde sutil */
-  --color-text-primary:   #1d1d1f; /* casi negro Apple */
-  --color-text-secondary: #6e6e73; /* gris medio Apple */
-  --color-accent:      #0071e3;   /* azul Apple */
-  --color-accent-hover:#0077ed;
-  --color-price:       #1d1d1f;
+  --color-bg:              #f5f5f7;
+  --color-surface:         #ffffff;
+  --color-border:          #d2d2d7;
+  --color-text-primary:    #1d1d1f;
+  --color-text-secondary:  #6e6e73;
+  --color-accent:          #0071e3;
+  --color-accent-hover:    #0077ed;
 
-  /* Tipografía: el mismo stack que usa Apple.com */
+  /* Categoría Apple: blanco puro con acento platino */
+  --cat-apple-bg:          #ffffff;
+  --cat-apple-text:        #1d1d1f;
+  --cat-apple-accent:      #555555;
+
+  /* Categoría Android: negro profundo */
+  --cat-android-bg:        #1d1d1f;
+  --cat-android-text:      #f5f5f7;
+  --cat-android-accent:    #3ddc84;   /* verde Android oficial */
+
   --font-sans: "SF Pro Display", "SF Pro Text", -apple-system,
-               BlinkMacSystemFont, "Helvetica Neue", Helvetica,
-               Arial, sans-serif;
+               BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-  /* Espaciado con escala 8px */
   --space-xs:  8px;
   --space-sm:  16px;
   --space-md:  24px;
   --space-lg:  48px;
-  --space-xl:  80px;
+  --space-xl:  88px;
 
-  /* Sombras */
-  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.08),
-                 0 1px  3px rgba(0, 0, 0, 0.06);
-  --shadow-card-hover: 0 8px 32px rgba(0, 0, 0, 0.12),
-                       0 2px  8px rgba(0, 0, 0, 0.08);
+  --shadow-sm:   0 1px  4px rgba(0,0,0,0.06);
+  --shadow-md:   0 4px 16px rgba(0,0,0,0.10);
+  --shadow-lg:   0 12px 40px rgba(0,0,0,0.16);
+  --shadow-xl:   0 24px 64px rgba(0,0,0,0.22);
 
-  /* Bordes */
-  --radius-card: 18px;
-  --radius-btn:  980px; /* píldora */
-  --radius-img:  12px;
-
-  /* Transiciones */
-  --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --radius-card: 24px;
+  --radius-pill: 980px;
+  --transition:  0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 
 /* ----------------------------------------------------------
-   2. RESET MODERNO
-      Elimina inconsistencias entre navegadores sin over-resetting.
+   2. RESET
    ---------------------------------------------------------- */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {
   scroll-behavior: smooth;
@@ -68,290 +59,478 @@ html {
 
 body {
   font-family: var(--font-sans);
-  font-size: 17px;              /* tamaño base de Apple */
+  font-size: 17px;
   line-height: 1.6;
   color: var(--color-text-primary);
   background-color: var(--color-bg);
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-
-a {
-  color: var(--color-accent);
-  text-decoration: none;
-}
-
-ul {
-  list-style: none;
-}
+img { display: block; max-width: 100%; height: auto; }
+a   { color: inherit; text-decoration: none; }
+ul  { list-style: none; }
+address { font-style: normal; }
 
 
 /* ----------------------------------------------------------
    3. HEADER
    ---------------------------------------------------------- */
 header {
-  background-color: rgba(255, 255, 255, 0.85);
-  backdrop-filter: saturate(180%) blur(20px);   /* efecto cristal Apple */
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
-  border-bottom: 1px solid var(--color-border);
-  padding: var(--space-sm) var(--space-md);
   position: sticky;
   top: 0;
   z-index: 100;
-
-  /* Layout interno: logo a la izquierda, nav a la derecha */
+  background: rgba(255,255,255,0.82);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--color-border);
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: var(--space-xs);
-  text-align: center;
+  justify-content: space-between;
+  padding: 0 var(--space-md);
+  height: 56px;
 }
 
-header h1 {
-  font-size: clamp(1.5rem, 4vw, 2rem);  /* fluido: escala con el viewport */
+.logo {
+  font-size: 1.1rem;
   font-weight: 700;
   letter-spacing: -0.03em;
   color: var(--color-text-primary);
 }
 
-header > p {
-  font-size: 0.8rem;
-  color: var(--color-text-secondary);
-  letter-spacing: 0.01em;
-}
-
-/* Navegación */
 header nav ul {
   display: flex;
   gap: var(--space-md);
-  flex-wrap: wrap;
-  justify-content: center;
 }
 
 header nav a {
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   font-weight: 500;
-  color: var(--color-text-primary);
-  padding: 4px 0;
-  border-bottom: 2px solid transparent;
-  transition: border-color var(--transition-smooth),
-              color var(--transition-smooth);
+  color: var(--color-text-secondary);
+  transition: color var(--transition);
 }
 
-header nav a:hover {
-  color: var(--color-accent);
-  border-bottom-color: var(--color-accent);
-}
+header nav a:hover { color: var(--color-accent); }
 
-/* En pantallas medianas: todo en una fila */
-@media (min-width: 768px) {
-  header {
-    flex-direction: row;
-    justify-content: space-between;
-    text-align: left;
-    padding: var(--space-sm) var(--space-lg);
-  }
-
-  header > p {
-    display: none; /* el slogan ocupa espacio innecesario en desktop */
-  }
+@media (max-width: 480px) {
+  header nav { display: none; }  /* simplificado en móvil pequeño */
 }
 
 
 /* ----------------------------------------------------------
-   4. MAIN & SECTION — contenedor principal
+   4. HERO
    ---------------------------------------------------------- */
-main {
-  max-width: 1200px;
-  margin: 0 auto;
+#hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 88vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl) var(--space-md);
+  background: linear-gradient(155deg, #ffffff 0%, #edf2fb 55%, #dce8f8 100%);
+}
+
+.hero-contenido {
+  position: relative;
+  z-index: 2;
+  max-width: 760px;
+  text-align: center;
+  animation: subirEntrar 0.9s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes subirEntrar {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-eyebrow {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-sm);
+}
+
+.hero-contenido h1 {
+  font-size: clamp(2.6rem, 6.5vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 1.05;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-md);
+}
+
+.hero-contenido h1 em {
+  font-style: normal;
+  /* color ligeramente apagado para crear jerarquía dentro del título */
+  color: #515154;
+}
+
+.hero-subtitulo {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--color-text-secondary);
+  max-width: 540px;
+  margin: 0 auto var(--space-lg);
+  line-height: 1.65;
+}
+
+.hero-cta {
+  display: inline-block;
+  padding: 15px 34px;
+  background-color: var(--color-text-primary);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  border-radius: var(--radius-pill);
+  transition: background-color var(--transition),
+              transform var(--transition),
+              box-shadow var(--transition);
+}
+
+.hero-cta:hover {
+  background-color: #3a3a3c;
+  transform: scale(1.04);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.20);
+}
+
+.hero-cta:active { transform: scale(0.97); }
+
+/* Círculos decorativos de fondo */
+.hero-deco { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+
+.deco-circulo {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.45;
+}
+
+.deco-circulo--1 {
+  width: clamp(300px, 50vw, 600px);
+  height: clamp(300px, 50vw, 600px);
+  background: radial-gradient(circle, #c7ddf9 0%, transparent 70%);
+  top: -20%;
+  right: -15%;
+}
+
+.deco-circulo--2 {
+  width: clamp(200px, 35vw, 420px);
+  height: clamp(200px, 35vw, 420px);
+  background: radial-gradient(circle, #d5e8ff 0%, transparent 70%);
+  bottom: -10%;
+  left: -10%;
+}
+
+
+/* ----------------------------------------------------------
+   5. TRUST STRIP — franja de garantías
+   ---------------------------------------------------------- */
+#garantias {
+  background-color: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
   padding: var(--space-lg) var(--space-md);
 }
 
-#catalogo h2 {
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  margin-bottom: var(--space-xs);
-  color: var(--color-text-primary);
-}
-
-#catalogo > p {            /* subtítulo opcional debajo del h2 */
-  color: var(--color-text-secondary);
-  margin-bottom: var(--space-lg);
-  font-size: 1.1rem;
-}
-
-/* ----------------------------------------------------------
-   5. GRID DE TARJETAS — RESPONSIVE
-      Mobile: 1 columna (default)
-      Tablet ≥ 600px: 2 columnas
-      Desktop ≥ 1024px: 3 columnas (listo para más productos)
-   ---------------------------------------------------------- */
-section#catalogo {
+.trust-strip {
+  max-width: 1100px;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr;             /* móvil: 1 columna */
+  grid-template-columns: repeat(2, 1fr);   /* móvil: 2 columnas */
   gap: var(--space-md);
 }
 
-/* El h2 ocupa todo el ancho, no entra en las columnas de tarjetas */
-section#catalogo > h2 {
-  grid-column: 1 / -1;
-}
-
-@media (min-width: 600px) {
-  section#catalogo {
-    grid-template-columns: repeat(2, 1fr);  /* tablet: 2 columnas */
+@media (min-width: 900px) {
+  .trust-strip {
+    grid-template-columns: repeat(4, 1fr); /* desktop: 4 en fila */
   }
 }
 
-@media (min-width: 1024px) {
-  section#catalogo {
-    grid-template-columns: repeat(3, 1fr);  /* desktop: 3 columnas */
-  }
+.trust-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+}
+
+.trust-icono {
+  font-size: 1.4rem;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.trust-item strong {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 2px;
+}
+
+.trust-item p {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  line-height: 1.4;
 }
 
 
 /* ----------------------------------------------------------
-   6. TARJETA (article)
+   6. SECCIÓN CATEGORÍAS
    ---------------------------------------------------------- */
-article {
-  background-color: var(--color-surface);
-  border-radius: var(--radius-card);
-  box-shadow: var(--shadow-card);
-  overflow: hidden;
+#categorias {
+  padding: var(--space-xl) var(--space-md);
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
-  /* Flexbox vertical para que el botón siempre quede abajo */
+.categorias-header {
+  text-align: center;
+  margin-bottom: var(--space-lg);
+}
+
+.categorias-header h2 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.categorias-header p {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+}
+
+
+/* ----------------------------------------------------------
+   7. GRID Y TARJETAS DE CATEGORÍA
+   ---------------------------------------------------------- */
+.categorias-grid {
+  display: grid;
+  grid-template-columns: 1fr;          /* móvil: apiladas */
+  gap: var(--space-md);
+}
+
+@media (min-width: 700px) {
+  .categorias-grid {
+    grid-template-columns: 1fr 1fr;    /* tablet/desktop: lado a lado */
+    gap: var(--space-md);
+  }
+}
+
+/* Base de la tarjeta */
+.cat-card {
+  position: relative;
+  display: flex;
+  align-items: flex-end;              /* el texto se ancla abajo */
+  min-height: clamp(340px, 48vw, 560px);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
+
+  /* Animación de entrada con stagger */
+  animation: cardEntrar 0.7s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.cat-card:nth-child(2) { animation-delay: 0.12s; }
+
+@keyframes cardEntrar {
+  from { opacity: 0; transform: translateY(20px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Hover: se eleva y crece ligeramente */
+.cat-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: var(--shadow-xl);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.cat-card:active {
+  transform: translateY(-2px) scale(0.995);
+}
+
+/* Transición en estado normal (sin hover) */
+.cat-card {
+  transition: transform var(--transition), box-shadow var(--transition);
+  box-shadow: var(--shadow-md);
+}
+
+/* ---- TEMA APPLE (blanca) ---- */
+.cat-card--apple {
+  background-color: var(--cat-apple-bg);
+  border: 1px solid var(--color-border);
+  color: var(--cat-apple-text);
+}
+
+/* ---- TEMA ANDROID (negra) ---- */
+.cat-card--android {
+  background-color: var(--cat-android-bg);
+  color: var(--cat-android-text);
+}
+
+/* Fondo decorativo con el SVG/logo grande */
+.cat-card__fondo {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.cat-card__logo-svg {
+  width: 65%;
+  height: 65%;
+  /* hereda el color del padre gracias a currentColor en el SVG */
+}
+
+.cat-card--apple  .cat-card__logo-svg { color: #1d1d1f; }
+.cat-card--android .cat-card__logo-svg { color: #ffffff; }
+
+/* Gradiente para que el texto sea legible sobre el SVG */
+.cat-card--apple::after,
+.cat-card--android::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.cat-card--apple::after {
+  background: linear-gradient(to top,
+    rgba(255,255,255,0.98) 0%,
+    rgba(255,255,255,0.60) 40%,
+    transparent 70%
+  );
+}
+
+.cat-card--android::after {
+  background: linear-gradient(to top,
+    rgba(29,29,31,0.98) 0%,
+    rgba(29,29,31,0.60) 40%,
+    transparent 70%
+  );
+}
+
+/* Contenido textual */
+.cat-card__contenido {
+  position: relative;
+  z-index: 2;
+  padding: var(--space-md) var(--space-md) var(--space-md);
+  width: 100%;
   display: flex;
   flex-direction: column;
-
-  transition: transform var(--transition-smooth),
-              box-shadow var(--transition-smooth);
+  gap: 6px;
 }
 
-article:hover {
-  transform: translateY(-4px);            /* elevación sutil al pasar el cursor */
-  box-shadow: var(--shadow-card-hover);
-}
-
-/* Imagen del producto */
-article figure {
-  background-color: #f9f9f9;
-  padding: var(--space-md);
-  text-align: center;
-}
-
-article figure img {
-  width: 100%;
-  max-height: 220px;
-  object-fit: contain;                    /* no recorta la imagen */
-  border-radius: var(--radius-img);
-  margin: 0 auto;
-  transition: transform var(--transition-smooth);
-}
-
-article:hover figure img {
-  transform: scale(1.03);                 /* zoom muy suave en hover */
-}
-
-article figcaption {
+.cat-card__marca {
   font-size: 0.75rem;
-  color: var(--color-text-secondary);
-  margin-top: var(--space-xs);
-}
-
-/* Cuerpo de la tarjeta */
-article h3 {
-  font-size: 1.2rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  padding: var(--space-sm) var(--space-sm) 0;
-}
-
-/* Lista de especificaciones (dl, dt, dd) */
-article dl {
-  padding: var(--space-xs) var(--space-sm);
-  display: grid;
-  grid-template-columns: auto 1fr;        /* dt a la izquierda, dd a la derecha */
-  gap: 6px var(--space-sm);
-  align-items: baseline;
-  flex-grow: 1;                           /* empuja el precio y el botón hacia abajo */
-}
-
-article dt {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--color-text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
-article dd {
-  font-size: 0.9rem;
-  color: var(--color-text-primary);
-}
-
-/* Precio */
-article p {
-  padding: var(--space-xs) var(--space-sm);
-  font-size: 1.35rem;
   font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--color-price);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.6;
 }
 
-/* CTA (botón "Consultar disponibilidad") */
-article a {
-  display: block;
-  margin: var(--space-xs) var(--space-sm) var(--space-sm);
-  padding: 12px var(--space-md);
-  background-color: var(--color-accent);
-  color: #ffffff;
-  font-size: 0.9rem;
+.cat-card__titulo {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.cat-card__desc {
+  font-size: 0.88rem;
+  opacity: 0.7;
+  line-height: 1.5;
+}
+
+/* Botón CTA dentro de la tarjeta */
+.cat-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: var(--space-xs);
+  padding: 10px 20px;
+  border-radius: var(--radius-pill);
+  font-size: 0.88rem;
   font-weight: 600;
-  text-align: center;
-  border-radius: var(--radius-btn);
-  transition: background-color var(--transition-smooth),
-              transform var(--transition-smooth);
+  width: fit-content;
+  transition: gap var(--transition), padding var(--transition);
 }
 
-article a:hover {
-  background-color: var(--color-accent-hover);
-  transform: scale(1.02);
+.cat-card--apple  .cat-card__cta {
+  background-color: var(--cat-apple-text);
+  color: #ffffff;
 }
 
-article a:active {
-  transform: scale(0.98);
+.cat-card--android .cat-card__cta {
+  background-color: var(--cat-android-accent);
+  color: #000000;
+}
+
+/* La flecha se desplaza al hacer hover en la tarjeta */
+.cat-card:hover .cat-card__cta span { transform: translateX(4px); }
+.cat-card:hover .cat-card__cta span,
+.cat-card__cta span {
+  display: inline-block;
+  transition: transform var(--transition);
 }
 
 
 /* ----------------------------------------------------------
-   7. FOOTER
+   8. FOOTER
    ---------------------------------------------------------- */
 footer {
-  border-top: 1px solid var(--color-border);
-  padding: var(--space-lg) var(--space-md);
-  text-align: center;
-  color: var(--color-text-secondary);
-  font-size: 0.85rem;
-  line-height: 2;
+  background-color: var(--color-text-primary);
+  color: rgba(255,255,255,0.72);
+  padding: var(--space-lg) var(--space-md) var(--space-md);
 }
 
-footer a {
-  color: var(--color-accent);
-  transition: opacity var(--transition-smooth);
+.footer-contenido {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  margin-bottom: var(--space-sm);
 }
 
-footer a:hover {
-  opacity: 0.75;
+.footer-marca strong {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
 }
 
-footer address {
-  font-style: normal;
+.footer-marca p { font-size: 0.85rem; }
+
+.footer-contacto {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: right;
 }
 
+.footer-contacto a {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.72);
+  transition: color var(--transition);
+}
+
+.footer-contacto a:hover { color: #ffffff; }
+
+.footer-copy {
+  max-width: 1100px;
+  margin: 0 auto;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.4);
+}
